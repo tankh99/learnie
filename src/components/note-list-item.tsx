@@ -1,4 +1,5 @@
 import { Note } from "@/types/Note"
+import Link from "next/link";
 
 type P = {
   note: Note;
@@ -6,8 +7,10 @@ type P = {
 
 export default function NoteListItem({note}: P) {
   return (
-    <div>
-      <div>{note.title}</div>
-    </div>
+    <Link className="cursor-pointer" href={`/notes/${note.id}`}>
+      <div>
+          <div>{note.title}</div>
+      </div>
+    </Link>
   )
 }

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/utils/provider";
-import "quill/dist/quill.core.css";
 import 'quill/dist/quill.snow.css';
 
 const inter = Inter({ subsets: ["latin"] });
