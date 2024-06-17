@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/utils/provider";
 import 'quill/dist/quill.snow.css';
+import Navbar from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
         <body className={inter.className}>
-            <Providers>
-              {children}
-            </Providers>
+            <Navbar/>
+            <main className="py-4 px-10">
+              <Providers>
+                {children}
+              </Providers>
+            </main>
         </body>
     </html>
   );
