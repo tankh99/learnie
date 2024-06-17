@@ -1,7 +1,6 @@
 'use client';
 
 import { getNotes } from '@/api/notes'
-import { useNotes } from '@/hooks/useNotes'
 import React, { useEffect } from 'react'
 
 export default function NoteList() {
