@@ -38,7 +38,7 @@ export default function NoteForm({onSubmit, defaultValues}: P) {
         <FormTextInput name="title" label="Title" form={form}/>
         <NoteEditor 
           defaultValue={defaultValues?.data}
-          onChange={(data: any) => form.setValue('data', JSON.stringify(data))} />
+          onChange={(data: any) => form.setValue('data', data)} />
         <Button type="submit">Submit</Button>
       </form>
     </Form>

@@ -8,7 +8,7 @@ type P = {
   onChange: any
 }
 
-export default function NoteEditor({onChange}: P) { 
+export default function NoteEditor({onChange, defaultValue}: P) { 
   const { quill, quillRef } = useQuill();
 
   useEffect(() => {
@@ -16,12 +16,10 @@ export default function NoteEditor({onChange}: P) {
       quill.on("text-change", (delta, oldDelta, source) => {
         // console.log("text-change", delta, oldDelta, source);
         // console.log(quill.root);
-        console.log(quill.getText())
-        console.log(quill.getContents())
-        onChange(quill.getContents())
-        
+        onChange(quill.root.innerHTML);
+        // onChange(quill.getContents().ops)
       })
-      // quill.clipboard.dangerouslyPasteHTML(0, "<h1>hello</h1>")
+      quill.clipboard.dangerouslyPasteHTML(0, defaultValue || '')
     }
   }, [quill])
 

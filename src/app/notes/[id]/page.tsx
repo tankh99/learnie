@@ -7,7 +7,7 @@ export default async function NotePage({params}: any) {
   const {id} = params;
 
   const note = await getNote(id)
-  
+
   if (!note) {
     return (
       <div>
@@ -22,7 +22,7 @@ export default async function NotePage({params}: any) {
     <div>
       <h1>Note Page</h1>
       <h3>{note.title}</h3>
-
+      <div dangerouslySetInnerHTML={{__html: note.data}}></div>
     </div>
   )
 }
