@@ -31,7 +31,7 @@ export async function addNote(note: Note) {
     const firestore = getFirestore(app);
     const notesRef = collection(firestore, NOTE_TABLE_NAME);
     try {
-        const addedNote = addDoc(notesRef, note);
+        const addedNote = await addDoc(notesRef, note);
         console.info(`Added note`, addedNote)
     } catch (err) {
         console.error(err);
