@@ -29,7 +29,7 @@ export default function NoteForm({onSubmit, defaultValues}: P) {
   const form = useForm({
     mode: "onChange",
     resolver: zodResolver(noteFormSchema),
-    defaultValues: DEFAULT_VALUES,
+    defaultValues: defaultValues || DEFAULT_VALUES,
   })
 
   return (

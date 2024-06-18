@@ -1,12 +1,19 @@
 import { getNote, getNotes } from '@/api/notes';
+import NoteForm, { noteFormSchema } from '@/components/form/note-form';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import React from 'react'
+import { z} from 'zod';
 
 export default async function NotePage({params}: any) {
   const {id} = params;
 
   const note = await getNote(id)
+
+  const onSubmit = async (values: z.infer<typeof noteFormSchema>) => {
+    'use server'
+    console.log(values);
+  }
 
   if (!note) {
     return (
@@ -21,8 +28,7 @@ export default async function NotePage({params}: any) {
   return (
     <div>
       <h1>Note Page</h1>
-      <h3>{note.title}</h3>
-      <div dangerouslySetInnerHTML={{__html: note.data}}></div>
+      <NoteForm defaultValues={note} onSubmit={onSubmit} />
     </div>
   )
 }
