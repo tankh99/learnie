@@ -1,10 +1,29 @@
-import { getNotes } from '@/api/notes';
-import { useParams } from 'next/navigation'
+import { getNote, getNotes } from '@/api/notes';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 import React from 'react'
 
-export default function NotePage({params}: any) {
+export default async function NotePage({params}: any) {
+  const {id} = params;
+
+  const note = await getNote(id)
+  
+  if (!note) {
+    return (
+      <div>
+        No note found
+        <Link href="/">
+          <Button>Go back</Button>
+        </Link>
+      </div>
+    )
+  }
   return (
-    <div>Note Page {params.id}</div>
+    <div>
+      <h1>Note Page</h1>
+      <h3>{note.title}</h3>
+
+    </div>
   )
 }
 
