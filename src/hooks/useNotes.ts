@@ -1,4 +1,4 @@
-import { addNote, getNotes, updateNote } from "@/api/notes";
+import { addNote, deleteNote, getNotes, updateNote } from "@/api/notes";
 import { Note } from "@/types/Note";
 import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -32,6 +32,17 @@ export function useUpdateNote(id: string) {
     mutationFn: (note: Note) => updateNote(id, note),
     onSuccess: () => {
       console.info("note update success")
+      queryClient.invalidateQueries({queryKey: ["notes"]});
+    },
+  })
+}
+
+export function useDeleteNote(id: string) {
+  const queryClient = new QueryClient();
+  return useMutation({
+    mutationFn: () => deleteNote(id),
+    onSuccess: () => {
+      console.info("note delete success")
       queryClient.invalidateQueries({queryKey: ["notes"]});
     },
   })
