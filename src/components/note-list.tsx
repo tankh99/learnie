@@ -9,7 +9,6 @@ import Link from 'next/link';
 import { Button } from './ui/button';
 
 export default function NoteList() {
-    // const [notes, setNotes] = useState([])
     const { data: notes, isLoading } = useGetNotes();
 
     return (

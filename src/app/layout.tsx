@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "@/utils/provider";
 import 'quill/dist/quill.snow.css';
 import Navbar from "@/components/navbar";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
             <main className="py-4 px-10">
               <Providers>
                 {children}
+                <Toaster/>
               </Providers>
             </main>
         </body>
