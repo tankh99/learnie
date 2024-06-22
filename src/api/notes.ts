@@ -1,5 +1,5 @@
 import { app } from "@/lib/firebase/config";
-import { Note } from "@/types/Note";
+import { firestoreNoteToNote, Note } from "@/types/Note";
 import { ref } from "firebase/database";
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, orderBy, query, updateDoc, where } from "firebase/firestore";
 
@@ -25,10 +25,7 @@ export async function getNotes() {
             return [];
         }
         querySnap.docs.map(doc => {
-            notes.push({
-                id: doc.id,
-                ...doc.data()
-            } as Note);
+            notes.push(firestoreNoteToNote(doc));
         });
     } catch (err) {
         console.error(err);
@@ -42,10 +39,7 @@ export async function getNote(id: string) {
         const notesDoc = doc(notesRef, id)
         const note = await getDoc(notesDoc)
         if (note.exists()) {
-            return {
-                id: note.id,
-                ...note.data()
-            } as Note;
+            return firestoreNoteToNote(note)
         }
         return null;
     } catch (err) {
