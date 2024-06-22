@@ -38,5 +38,6 @@ export async function generateStaticParams() {
 
   } catch (err) {
     console.error(err);
+    return []
   }
 }
